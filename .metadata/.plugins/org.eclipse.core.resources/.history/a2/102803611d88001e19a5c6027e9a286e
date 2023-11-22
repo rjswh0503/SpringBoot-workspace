@@ -1,0 +1,7 @@
+package com.kh.pr;
+
+public class IntroController {
+	@controller
+	
+
+}

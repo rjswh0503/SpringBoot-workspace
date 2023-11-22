@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;springTestProject/src/main/webapp/WEB-INF/JSP/NewFile.jsp&apos; to &apos;Intro.jsp&apos;" description="Rename resource &apos;NewFile.jsp&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/WEB-INF/JSP/NewFile.jsp" name="Intro.jsp" stamp="1700537219890" updateReferences="true"/>
+</session>
