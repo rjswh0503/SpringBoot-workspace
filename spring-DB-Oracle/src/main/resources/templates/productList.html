@@ -3,9 +3,33 @@
 <head>
 <meta charset="EUC-KR">
 <title>productList</title>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-<body>
-	<h1 th:text="${products}"></h1>
-
-</body>
+	<body>
+		
+		<!--<h1 th:text="${products}"></h1>-->
+		
+		<table border="1">
+			<thead>
+				<tr>
+					<th>제품 ID</th>
+					<th>제품 명</th>
+					<th>카테고리</th>
+					<th>가격</th>
+					<th>수량</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- 타임리프를 사용해서 상품목록을 출력 
+				th:each
+				-->
+				<tr th:each="p : ${products}">
+					<td th:text="${p.product_name"}></td>
+					<td th:text="${p.category"}></td>
+					<td th:text="${p.price"}></td>
+					<td th:text="${p.stock_quantity"}></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
 </html>
