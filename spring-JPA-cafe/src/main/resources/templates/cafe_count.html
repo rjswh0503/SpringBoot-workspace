@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<meta charset="EUC-KR">
+	<title>Cafe count</title>
+	</head>
+		<body>
+			<h2 th:text="${location}">Cafe Count</h2>
+			<p th:text="'location :  ' +  ${location}"></p>
+			<p th:text="'cafeCount : ' + ${cafeCount}"></p>
+			<a th:href="@{/cafes}">Back to Cafe List</a>
+		
+		</body>
+</html>
