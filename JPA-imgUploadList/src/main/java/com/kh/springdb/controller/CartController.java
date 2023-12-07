@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.springdb.model.Cart;
 import com.kh.springdb.model.CartItem;
@@ -71,6 +72,57 @@ public class CartController {
 	
 	
 	
+	//결제 완료 후 장바구니 삭제하기 위한 메서드 추가
+	@PostMapping("/checkout")
+	public String checkout(RedirectAttributes redirectAttribute) {
+		Long cartId = 1L;
+		
+		
+		try {
+			cartService.checkout(cartId);
+			redirectAttribute.addFlashAttribute("checkoutStatus", "success");
+			
+		}catch(Exception e){
+			redirectAttribute.addFlashAttribute("checkoutStatus", "empty");
+			
+		}
+		
+		
+		return "redirect:/item/list";
+		
+	}
+	
+	
 	
 	
 }
+
+
+
+/*
+ RedirectAttributes : 리다이렉트할 때 속성을 전달하는데 사용
+ 				
+ 				
+ 				
+ 				
+ 			
+ 
+  addFlashAttribute : 데이터를 추가할 때 리다이렉트 후 한 번만 사용 가능 사용 후에는 자동으로 삭제 
+  						리다이렉트해서 들어가고자하는 페이지로 이동할 때 속성이 존재하고, 돌아간 페이지에서 속성을 사용할 수 있음
+  
+  
+ * */
+
+
+/*
+1. clear가 되지 않는다면 delete를 이용해서 장바구니 비우기
+
+2. db table 세팅 확인하기
+
+3. order에서 에러가난다면
+	entity name 설정을 해야지 설정 가능
+	
+4. redirect로 flash 설정이 되지 않는다면
+	@PathVariable
+	@Request
+*/

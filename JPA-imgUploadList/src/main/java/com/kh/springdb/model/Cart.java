@@ -11,7 +11,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.SequenceGenerator;
 import lombok.*;
@@ -50,6 +52,13 @@ public class Cart {
 	//카트에 담긴 상품 리스트를 넣기 위한 배열 생성
 	@OneToMany(mappedBy = "cart")
 	private List<CartItem> cartItems = new ArrayList<>();
+	
+	
+	//order 객체 생성으로 인한 추가 mapper
+	//만약에 Entity에 설정한 이름이 있다면
+	@OneToOne(mappedBy="cart")
+	@JoinColumn(name="customer_order_id")
+	private Order order;
 	
 	
 	public int getTotalAmount() {

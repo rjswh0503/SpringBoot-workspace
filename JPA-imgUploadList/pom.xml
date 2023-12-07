@@ -55,6 +55,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+	
 		<dependency>
 			<groupId>com.kh.springdb</groupId>
 			<artifactId>Chap_02</artifactId>

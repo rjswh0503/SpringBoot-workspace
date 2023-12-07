@@ -23,8 +23,8 @@ import lombok.Setter;
 public class CartItem {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="cartItem_seq")
-	@SequenceGenerator(name="cartItems_seq", sequenceName="cartItmes_seq", allocationSize=1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="cartItemd_seq")
+	@SequenceGenerator(name="cartItemd_seq", sequenceName="cartItemd_seq", allocationSize=1)
 	private int id;
 	
 	

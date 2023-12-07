@@ -2,22 +2,37 @@
 <html xmlns="http://www.thymeleaf.org">
 	<head>
 		<meta charset="EUC-KR">
-		<title>Item List</title>
+		<title>상품 목록</title>
 		<style>
 			
-		h1,a {
+		h1{
 			
 		text-align: center;
 		
 		
 		}
 			
+	.add {
+		position: absolute;
+		right: 30px;
+		
+		
+	}	
+	
+		
 	
 	.item-container {
 		max-width: 900px;
-		margin : 0 auto;
-		display: flex;
-		justify-content: center;
+		margin : 10px auto;
+		padding: 10px;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr); 
+        gap: 0.5%;
+        box-sizing: border-box;
+        
+	
+		
+		
 	}
 	
 	.item {
@@ -29,6 +44,7 @@
 		margin: 10px;
 		
 		
+		
 	}
 	.item img {
 		width: 100%;
@@ -37,9 +53,11 @@
 </style>
 	</head>
 	<body>
-		<h1>상품 리스트</h1>
+		<h1>상품 목록</h1>
+		<div class="add">
 		<a th:href="@{/item/new}">상품추가하기</a>
-		<a th:href="@{/cart/}">장바구니보기</a>
+		<a th:href="@{/cart}">장바구니보기</a>
+		</div>
 		<div class="item-container" th:each="item : ${items}">
 			<div class="item">
 			<img th:src="@{${item.getImgPath()}}" /><br>

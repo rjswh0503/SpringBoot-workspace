@@ -6,6 +6,7 @@
 		<style>
 			h1 {
 				text-align: center;
+				margin-bottom: 150px;
 			}
 			img {
 				width: 100px;
@@ -65,6 +66,15 @@
 		<div class="text">
 		<p>총 가격 : <span th:text="${cart.totalAmount}"></span></p>
 		<p>총 수량 : <span th:text="${cart.totalCount}"></span></p>
+		<div th:if="${param.checkoutStatus == 'success'}">
+		<p>결제가 완료 되었습니다.</p>
+		</div>
+		<div th:if="${param.checkoutStatus == 'empty'}">
+		<p>장바구니가 비어있습니다.</p>
+		</div>
+		<form action="/cart/checkout" method="post">
+			<button type="submit">결제하기</button>
+		</form>
 		</div>
 	</div>
 		

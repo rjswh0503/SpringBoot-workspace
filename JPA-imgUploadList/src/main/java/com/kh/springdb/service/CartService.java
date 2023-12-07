@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 import com.kh.springdb.model.Cart;
 import com.kh.springdb.model.CartItem;
 import com.kh.springdb.model.Item;
+import com.kh.springdb.model.Order;
 import com.kh.springdb.repository.CartItemRepository;
 import com.kh.springdb.repository.CartRepository;
 import com.kh.springdb.repository.ItemRepository;
+import com.kh.springdb.repository.OrderRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -25,6 +27,9 @@ public class CartService {
 
 	@Autowired
 	private CartRepository cartRepository;
+	
+	@Autowired
+	private OrderRepository orderRepository;
 
 	public List<CartItem> findCartItemByCartId(int cartId) {
 		return carItemRepository.findCartItemByItemId(cartId);
@@ -65,4 +70,47 @@ public class CartService {
 
 	}
 
+	
+	
+	//결제하기
+	@Transactional
+	public void checkout(Long cartId) {
+		//주문할 아이템 정보를 찾기 위해 cart Entity 정보를 가지고 옴
+		Cart cart = cartRepository.findById(cartId).orElse(null);
+		//Cart 어떤 유저가 장바구니에 물건을 담았는지
+		// user -cart 를 연결해주는 역할을 함
+		
+		
+		//CartItem - 장바구니에 어떤 아이템이 담겼는지
+		// cart - Item : 연결해놓은 역할을 함 
+		
+		//만약에 카드가 null값이 아닐 때 
+		if(cart != null) {
+			//order 객체를 가지고 옴 
+			//Order order = Order     + cart(cart).build();
+			Order order = Order.builder().cart(cart).build();
+			
+			//결제 이후 문제가 생길 것을 대비해서 데이터베이스 안에도 
+			//주문한 사람과 주문 내역 날짜와 같은 주문 내역을 저장할 예정 
+			orderRepository.save(order);
+		
+			
+			//delete와 clear
+			
+			cart.getCartItems().clear();
+			cartRepository.save(cart);
+			carItemRepository.deleteAll();
+			cart.getCartItems().clear();
+			
+			
+			
+			
+		}
+		
+	}
+	
+	
+	
+	
+	
 }
