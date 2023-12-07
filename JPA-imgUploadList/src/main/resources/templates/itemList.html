@@ -5,17 +5,43 @@
 		<title>Item List</title>
 		<style>
 			
+		h1,a {
 			
+		text-align: center;
+		
+		
+		}
 			
-			
-			
-			
-		</style>
+	
+	.item-container {
+		max-width: 900px;
+		margin : 0 auto;
+		display: flex;
+		justify-content: center;
+	}
+	
+	.item {
+		float: left;
+		width: 200px;
+		border: 1px solid #ccc;
+		padding: 10px;
+		text-align: center;
+		margin: 10px;
+		
+		
+	}
+	.item img {
+		width: 100%;
+		height: auto;
+	}
+</style>
 	</head>
 	<body>
 		<h1>상품 리스트</h1>
 		<a th:href="@{/item/new}">상품추가하기</a>
+		<a th:href="@{/cart/}">장바구니보기</a>
 		<div class="item-container" th:each="item : ${items}">
+			<div class="item">
 			<img th:src="@{${item.getImgPath()}}" /><br>
 			<label>제품명 : </label>
 			<span th:text="${item.name}"></span><br>
@@ -32,6 +58,7 @@
 				<input type="hidden" name="itemid" th:value="${item.id}"/>
 				<button type="submit">장바구니에 담기</button>
 			</form>
+		</div>
 		</div>
 	</body>
 </html>

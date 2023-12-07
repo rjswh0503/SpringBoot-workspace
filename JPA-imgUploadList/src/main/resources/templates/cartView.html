@@ -3,18 +3,36 @@
 	<head>
 		<meta charset="EUC-KR">
 		<title>장바구니</title>
+		<style>
+			h1 {
+				text-align: center;
+			}
+			img {
+				width: 100px;
+				height: 100px;
+			}
+			.cart-container {
+				display: flex;
+				justify-content: center;
+			}
+			.text {
+				text-align: center;
+			}
+			
+		</style>
 	</head>
 	<body>
 		<h1>장바구니</h1>
 		<div th:if="${cart != null}">
-			
-		<table>
+		<div class="cart-container">
+		<table border="1">
 			<thead>
 				<tr>
 					<th>상품명</th>
 					<th>가격</th>
 					<th>수량</th>
 					<th>합계</th>
+					<th>사진</th>
 				</tr>
 			</thead>
 			
@@ -37,13 +55,17 @@
 				<td th:text="${cartItem.item.price}"></td>
 				<td th:text="${cartItem.count}"></td>
 				<td th:text="${cartItem.item.price} * ${cartItem.count}"></td>
+				<td><img th:src="@{${cartItem.item.getImgPath()}}"/></td>
+				
 				</tr>
 			</tbody>
 		</table>
+		</div>	
 		
-		
+		<div class="text">
 		<p>총 가격 : <span th:text="${cart.totalAmount}"></span></p>
 		<p>총 수량 : <span th:text="${cart.totalCount}"></span></p>
+		</div>
 	</div>
 		
 		<div th:unless="${cart != null}">
